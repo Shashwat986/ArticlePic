@@ -11,8 +11,8 @@ import App from '../app.vue'
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el: "#home",
-    data: {
-      message: "World"
+    components: {
+      app: App
     }
   })
 })
