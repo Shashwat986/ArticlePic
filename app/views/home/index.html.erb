@@ -1,3 +1,7 @@
 <div id="home">
-  <app></app>
+  <app
+    <% if user_signed_in? %>
+      user-json="<%= current_user.to_vue %>"
+    <% end %>
+  ></app>
 </div>

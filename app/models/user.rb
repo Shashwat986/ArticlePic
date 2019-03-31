@@ -18,4 +18,8 @@ class User < ApplicationRecord
       user.skip_confirmation!
     end
   end
+
+  def to_vue
+    self.to_json
+  end
 end
