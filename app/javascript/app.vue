@@ -19,7 +19,7 @@ export default {
       if (this.userJson)
         return JSON.parse(this.userJson);
       else
-        return null;
+        return {};
     }
   }
 }
