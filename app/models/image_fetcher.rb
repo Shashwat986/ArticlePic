@@ -23,7 +23,7 @@ class ImageFetcher
     @@sources.each do |source|
       begin
         resp = self.class.getSourceClass(source).new.fetch(@keyword)
-      rescue Exception => e
+      rescue => e
         puts "Failed fetching from #{source}"
         puts e
       end
