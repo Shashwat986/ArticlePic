@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_06_095035) do
+ActiveRecord::Schema.define(version: 2019_04_06_134741) do
 
   create_table "documents", force: :cascade do |t|
     t.text "text"
@@ -39,6 +39,16 @@ ActiveRecord::Schema.define(version: 2019_04_06_095035) do
     t.integer "height"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "raw"
+    t.index ["source", "uuid"], name: "index_images_on_source_and_uuid"
+  end
+
+  create_table "keywords", force: :cascade do |t|
+    t.string "keyword"
+    t.integer "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["keyword"], name: "index_keywords_on_keyword"
   end
 
   create_table "parsed_documents", force: :cascade do |t|
