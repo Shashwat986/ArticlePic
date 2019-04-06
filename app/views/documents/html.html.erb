@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Lora|Montserrat" rel="stylesheet">
+  <style type="text/css">
+    body {
+      margin: 50px;
+      font-family: 'Lora', serif;
+      font-size: 24px;
+      margin-bottom: 200px;
+    }
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5em;
+    }
+
+    img {
+      max-width: 20%;
+      margin: 0 20px;
+    }
+
+    img.left {
+      float: left;
+    }
+
+    img.right {
+      float: right;
+    }
+
+    img.title {
+      max-width: 100%;
+      max-height: 50px;
+    }
+
+    div.cover {
+      height: 400px;
+      width: 100%;
+      background-image: url(<%= @document.images.first.url %>);
+      background-position: center;
+    }
+  </style>
+</head>
+<% is_left = true %>
+<%
+  num_paras = @document.text.split("\n\n").count
+  num_images = @document.images.count - 1
+
+  paras_per_image = (num_paras / num_images).to_i
+  paras_per_image = 2 if paras_per_image < 2
+  img_idx = 1
+
+  images = @document.images
+%>
+<body>
+  <div class="cover"></div>
+  <h1>Title of the Story</h1>
+  <div id="main">
+    <% @document.text.split("\n\n").each_with_index do |paragraph, idx| %>
+      <% if (idx % paras_per_image) == 0 && img_idx <= num_images %>
+        <img src="<%= images[img_idx].url %>" class="<%= is_left ? 'left' : 'right' %>">
+        <% img_idx += 1 %>
+        <% is_left = !is_left %>
+      <% end %>
+
+      <%= simple_format(paragraph) %>
+    <% end %>
+  </div>
+</body>
+</html>

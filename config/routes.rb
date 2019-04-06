@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   scope '/api' do
-    resources :documents, :users, :images
+    resources :documents do
+      member do
+        get :html
+      end
+    end
   end
 end
