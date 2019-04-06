@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_31_163717) do
+ActiveRecord::Schema.define(version: 2019_04_06_095035) do
 
   create_table "documents", force: :cascade do |t|
     t.text "text"
@@ -18,6 +18,35 @@ ActiveRecord::Schema.define(version: 2019_03_31_163717) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_documents_on_author_id"
+  end
+
+  create_table "documents_images", id: false, force: :cascade do |t|
+    t.integer "document_id", null: false
+    t.integer "image_id", null: false
+    t.index ["document_id", "image_id"], name: "index_documents_images_on_document_id_and_image_id"
+    t.index ["image_id", "document_id"], name: "index_documents_images_on_image_id_and_document_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "url"
+    t.string "url_small"
+    t.string "url_other"
+    t.string "source"
+    t.string "uuid"
+    t.string "keywords"
+    t.string "description"
+    t.integer "width"
+    t.integer "height"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "parsed_documents", force: :cascade do |t|
+    t.integer "document_id"
+    t.text "keywords"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_parsed_documents_on_document_id"
   end
 
   create_table "users", force: :cascade do |t|

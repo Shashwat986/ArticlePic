@@ -1,0 +1,2 @@
+class ParsedDocument < ApplicationRecord
+end
