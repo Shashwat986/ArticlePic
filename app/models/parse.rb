@@ -2,7 +2,7 @@ require 'csv'
 
 class Parse
   def initialize
-    csv = CSV.open('wordlist.txt', 'r', col_sep: "\t")
+    csv = CSV.open('data/wordlist.txt', 'r', col_sep: "\t")
     @wordmap = csv.map { |row| [ row[1].downcase , row[2].to_f ] }.to_h
     csv.close
   end
