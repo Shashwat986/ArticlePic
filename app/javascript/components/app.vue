@@ -2,12 +2,16 @@
   <div>
     <p>{{ message }}</p>
     <p>{{ user.email }}</p>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
+import router from '../router.js';
+
 export default {
   props: ['user-json'],
+  router,
   data: function () {
     return {
       message: "Hello Vue!"
@@ -15,12 +19,16 @@ export default {
   },
   computed: {
     user () {
-      console.log(this.userJson)
-      if (this.userJson)
+      if (this.userJson) {
+        console.log(this.userJson)
         return JSON.parse(this.userJson);
-      else
+      } else {
         return {};
+      }
     }
+  },
+  mounted () {
+    console.log(this.$router);
   }
 }
 </script>

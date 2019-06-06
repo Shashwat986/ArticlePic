@@ -3,10 +3,14 @@ class ParsedDocument < ApplicationRecord
 
   serialize :keywords, JSON
 
+  def parsed?
+    self.keywords.present?
+  end
+
   def self.parse document, force = false
     parsed_document = self.where(document_id: document.id).first_or_create
 
-    if !force && parsed_document.keywords.present?
+    if !force && parsed_document.parsed?
       return parsed_document
     end
 

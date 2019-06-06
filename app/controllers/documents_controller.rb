@@ -36,12 +36,12 @@ class DocumentsController < ApplicationController
     if params[:id]
       @document = Document.find_by_id(params[:id])
       not_found if @document.nil?
-      not_found unless user_signed_in?
+      forbidden unless user_signed_in?
       forbidden if @document.author.id != current_user.id
     end
   end
 
   def check_access
-    not_found unless user_signed_in?
+    forbidden unless user_signed_in?
   end
 end

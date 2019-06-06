@@ -36,6 +36,12 @@ module.exports = function(api) {
       ]
     ].filter(Boolean),
     plugins: [
+      [
+        "wildcard",
+        {
+          "exts": ['js', 'vue']
+        }
+      ],
       require('babel-plugin-macros'),
       require('@babel/plugin-syntax-dynamic-import').default,
       isTestEnv && require('babel-plugin-dynamic-import-node'),

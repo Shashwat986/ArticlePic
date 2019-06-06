@@ -13,4 +13,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  # Catch-all. Send all not-found paths to VueJS to deal with
+  get '*path', to: 'home#index'
 end
