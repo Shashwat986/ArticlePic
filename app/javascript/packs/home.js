@@ -3,6 +3,8 @@
 import Vue from 'vue/dist/vue.esm.js';
 import App from '../components/app.vue'
 
+require('material.js');
+
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el: "#home",

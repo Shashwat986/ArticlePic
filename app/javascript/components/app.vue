@@ -1,8 +1,16 @@
 <template>
-  <div>
-    <p>{{ message }}</p>
-    <p>{{ user.email }}</p>
-    <router-view></router-view>
+  <div class="page-container">
+    <md-app>
+      <md-app-toolbar class="md-primary">
+        <span class="md-title" style="flex: 1">{{ message }}</span>
+        <md-button>Hello</md-button>
+        <md-button>World</md-button>
+      </md-app-toolbar>
+      <md-app-content>
+        <p class='md-display-1'>{{ user.email }}</p>
+        <router-view></router-view>
+      </md-app-content>
+    </md-app>
   </div>
 </template>
 
@@ -32,10 +40,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-p {
-  font-size: 2em;
-  text-align: center;
-}
-</style>
