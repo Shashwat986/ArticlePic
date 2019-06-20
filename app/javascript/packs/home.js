@@ -5,6 +5,11 @@ import App from '../components/app.vue'
 
 require('material.js');
 
+import RestfulVue from '../restful_vue.js';
+import ajaxRoutes from '../ajax_routes.js';
+
+Vue.use(RestfulVue, ajaxRoutes)
+
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el: "#home",

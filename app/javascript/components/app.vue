@@ -3,8 +3,8 @@
     <md-app>
       <md-app-toolbar class="md-primary">
         <span class="md-title" style="flex: 1">{{ message }}</span>
-        <md-button>Hello</md-button>
-        <md-button>World</md-button>
+        <md-button to='/test'>Hello</md-button>
+        <md-button to='/'>World</md-button>
       </md-app-toolbar>
       <md-app-content>
         <p class='md-display-1'>{{ user.email }}</p>
@@ -20,6 +20,7 @@ import router from '../router.js';
 export default {
   props: ['user-json'],
   router,
+  fetchData: ['documents'],
   data: function () {
     return {
       message: "Hello Vue!"
