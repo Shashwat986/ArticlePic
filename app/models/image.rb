@@ -24,4 +24,8 @@ class Image < ApplicationRecord
 
     Image.create!(resp)
   end
+
+  def small
+    url_small || url
+  end
 end

@@ -1,19 +1,19 @@
 <template>
   <div>
-    <p> World</p>
-    {{ restfulData['documents'] }}
-    <md-card>
+    <md-card v-for="doc in restfulData['documents']" v-if="restfulLoaded">
       <md-card-header>
-        <div class="md-title">Card without hover effect</div>
+        <div class="md-title">{{ doc.title }}</div>
+        <md-card-media>
+          <img :src="doc.images[0].url">
+        </md-card-media>
       </md-card-header>
 
       <md-card-content>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non.
+        {{ doc.text }}
       </md-card-content>
 
       <md-card-actions>
-        <md-button>Action</md-button>
-        <md-button>Action</md-button>
+        <md-button :to="'/document/' + doc.id">Action</md-button>
       </md-card-actions>
     </md-card>
   </div>

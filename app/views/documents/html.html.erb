@@ -38,7 +38,7 @@
     div.cover {
       height: 400px;
       width: 100%;
-      background-image: url(<%= @document.images.first.url %>);
+      background-image: url(<%= @document.images.first.small %>);
       background-position: center;
     }
   </style>
@@ -60,7 +60,7 @@
   <div id="main">
     <% @document.text.split("\n\n").each_with_index do |paragraph, idx| %>
       <% if (idx % paras_per_image) == 0 && img_idx <= num_images %>
-        <img src="<%= images[img_idx].url %>" class="<%= is_left ? 'left' : 'right' %>">
+        <img src="<%= images[img_idx].small %>" class="<%= is_left ? 'left' : 'right' %>">
         <% img_idx += 1 %>
         <% is_left = !is_left %>
       <% end %>

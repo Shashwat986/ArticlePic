@@ -17,6 +17,11 @@ export default new VueRouter({
     {
       path: '/test',
       component: Components.Html
+    },
+    {
+      path: '/document/:id',
+      component: Components.Document,
+      props: true
     }
   ]
 });

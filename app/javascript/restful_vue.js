@@ -77,24 +77,30 @@ export default {
     Vue.mixin({
       data: function () {
         return {
-          restfulData: {}
+          restfulData: {},
+          restfulLoaded: false
         };
       },
-      mounted: function () {
-        let fetchData = this.$options.fetchData;
+      created: function () {
+        let fetchData = this.$options.fetchData || this.fetchData;
         if (fetchData != null && Array.isArray(fetchData)) {
-          fetchData.forEach((elem) => {
+          let promises = [];
+          fetchData.forEach((elem, idx) => {
             let validRoute = getValidRoute(elem, options.routes);
 
             if (validRoute) {
               console.log("Got route", validRoute);
-              axios[validRoute.method](options.baseUrl + validRoute.path)
+              let promise = axios[validRoute.method](options.baseUrl + validRoute.path)
                 .then((response) => {
-                  console.log(response.data);
                   this.$set(this.restfulData, elem, response.data);
+                  this.$set(this.restfulData, idx, response.data);
                 });
+              promises.push(promise)
             }
-          })
+          });
+          Promise.all(promises).then(() => {
+            this.restfulLoaded = true;
+          });
         }
       }
     })

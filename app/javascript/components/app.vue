@@ -20,7 +20,6 @@ import router from '../router.js';
 export default {
   props: ['user-json'],
   router,
-  fetchData: ['documents'],
   data: function () {
     return {
       message: "Hello Vue!"
