@@ -1,8 +1,10 @@
 class ImageFetcher
-  @@sources = ['splashbase', 'unsplash', 'placeholder']
+  @@sources = ['wikipedia', 'splashbase', 'unsplash', 'placeholder']
 
   def self.getSourceClass source
     case source
+    when 'wikipedia'
+      ImageFetcher::WikipediaFetcher
     when 'splashbase'
       ImageFetcher::SplashbaseFetcher
     when 'unsplash'
@@ -31,6 +33,47 @@ class ImageFetcher
     end
 
     resp
+  end
+end
+
+class ImageFetcher::WikipediaFetcher
+  def fetch keyword
+    res = RestClient.get("https://en.wikipedia.org/w/api.php", params: {action: 'query', list: 'search', srsearch: keyword, format: 'json'})
+
+    first_title = JSON.parse(res.body)['query']['search'][0]['title']
+
+    # Check if I have a page image
+    # res = RestClient.get("https://en.wikipedia.org/w/api.php", params: {action: 'query', prop: 'pageimages', titles: first_title, format: 'json'})
+    # if JSON.parse(res.body)['query']['pages'].keys.first != "-1"
+    #   # We found something!
+    #   return [{
+    #     url: obj['large_url'],
+    #     url_small: obj['url'],
+
+    #     uuid: obj['id'],
+    #     keywords: [keyword, first_title.downcase],
+    #     description: nil,
+
+    #     source: 'wikipedia',
+    #     raw: obj.to_json
+    #   }]
+    # end
+
+    res = RestClient.get("https://en.wikipedia.org/w/api.php", params: {action: 'query', prop: 'pageimages', titles: first_title, piprop: "original|thumbnail", format: 'json'})
+
+    out = JSON.parse(res)['query']['pages'].values
+
+    return out.map do |im|
+      {
+        url: im['original']['source'],
+        url_small: im['thumbnail']['source'],
+        uuid: im['pageid'],
+        keywords: [keyword, first_title.downcase],
+        description: nil,
+        source: 'wikipedia',
+        raw: im.to_json
+      }
+    end
   end
 end
 
