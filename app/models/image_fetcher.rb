@@ -105,7 +105,7 @@ end
 class ImageFetcher::UnsplashFetcher
   def fetch keyword
     res = RestClient.get('https://api.unsplash.com/search/photos', params: {
-      client_id: '208e9e0d979b7ae4e762ecaa50a9a580bcc173ec11ab34932d3ce51d06135ad1',
+      client_id: ENV['UNSPLASH_CLIENT_ID'],
       query: keyword
     })
 

@@ -1,10 +1,10 @@
 # README
 
-Task
+### Task
 
 Use text analysis of a news article to automatically fetch article keywords, and use them to find relevant pictures.
 
-Todo
+### Todo
 
 * TF-IDF
   - (wiki20190320.txt) Through https://github.com/IlyaSemenov/wikipedia-word-frequency
@@ -17,7 +17,7 @@ Todo
   - https://commons.wikimedia.org/w/api.php?action=query&prop=globalusage&titles=File:Kathy%20and%20Woz%20(2400485190)%20(cropped2).jpg
   - https://commons.wikimedia.org/w/api.php?action=query&prop=pageimages&titles=Steve%20Wozniak&pithumbsize=100
 
-Things covered here:
+### Things covered here
 
 1. Vue Material Design
 1. TF-IDF
