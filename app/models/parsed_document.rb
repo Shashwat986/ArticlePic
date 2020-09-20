@@ -14,7 +14,7 @@ class ParsedDocument < ApplicationRecord
       return parsed_document
     end
 
-    words = $parse.run(document)
+    words = $tfidf.run(document)
     parsed_document.keywords = words
     parsed_document.save
 

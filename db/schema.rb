@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_06_134741) do
+ActiveRecord::Schema.define(version: 2020_09_20_084059) do
 
   create_table "documents", force: :cascade do |t|
     t.text "text"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2019_04_06_134741) do
     t.text "keywords"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "model"
     t.index ["document_id"], name: "index_parsed_documents_on_document_id"
   end
 

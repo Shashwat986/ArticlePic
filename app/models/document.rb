@@ -14,11 +14,11 @@ class Document < ApplicationRecord
     parsed_document = ParsedDocument.parse!(self)
   end
 
-  def get_images
+  def get_images force = false
     self.parse if self.parsed.nil?
 
     self.parsed.keywords.each do |word|
-      image = Image.fetch_image(word)
+      image = Image.fetch_image(word, force)
       self.images << image
     end
 
@@ -29,6 +29,6 @@ class Document < ApplicationRecord
     self.images = []
     self.save
     self.parse!
-    self.get_images
+    self.get_images true
   end
 end

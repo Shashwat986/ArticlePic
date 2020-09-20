@@ -73,10 +73,6 @@ class ImageFetcher::UnsplashFetcher
         keywords << tag['title']
       end
 
-      obj['photo_tags'].each do |tag|
-        keywords << tag['title']
-      end
-
       {
         url: obj['urls']['full'],
         url_small: obj['urls']['small'],

@@ -1,1 +1,2 @@
-$parse = Parse.new
+$tfidf = TfIdf.new
+$watson = Watson.new

@@ -12,10 +12,12 @@ class Image < ApplicationRecord
     end
   end
 
-  def self.fetch_image word
-    keyword = Keyword.where(keyword: word).last
-    if keyword.present?
-      return keyword.image
+  def self.fetch_image word, force = false
+    unless force
+      keyword = Keyword.where(keyword: word).last
+      if keyword.present?
+        return keyword.image
+      end
     end
 
     resp = ImageFetcher.new(word).fetch.first
