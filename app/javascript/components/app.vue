@@ -3,8 +3,8 @@
     <md-app>
       <md-app-toolbar class="md-primary">
         <span class="md-title" style="flex: 1">{{ message }}</span>
-        <md-button to='/test'>Hello</md-button>
-        <md-button to='/'>World</md-button>
+        <md-button to='/'>Home</md-button>
+        <md-button to='/test'>Test</md-button>
       </md-app-toolbar>
       <md-app-content>
         <p class='md-display-1'>{{ user.email }}</p>

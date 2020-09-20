@@ -10,10 +10,16 @@
 
       <md-card-content>
         {{ doc.text }}
+
+        <br>
+
+        <md-button v-for="tag in doc.keywords" class="md-raised md-dense">
+          {{ tag }}
+        </md-button>
       </md-card-content>
 
       <md-card-actions>
-        <md-button :to="'/document/' + doc.id">Action</md-button>
+        <md-button :to="'/document/' + doc.id">See Document</md-button>
       </md-card-actions>
     </md-card>
   </div>

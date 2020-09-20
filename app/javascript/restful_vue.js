@@ -83,7 +83,7 @@ export default {
       },
       created: function () {
         let fetchData = this.$options.fetchData || this.fetchData;
-        if (fetchData != null && Array.isArray(fetchData)) {
+        if (fetchData != null && Array.isArray(fetchData) && fetchData.length > 0) {
           let promises = [];
           fetchData.forEach((elem, idx) => {
             let validRoute = getValidRoute(elem, options.routes);
