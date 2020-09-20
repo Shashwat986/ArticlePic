@@ -24,4 +24,8 @@ Use text analysis of a news article to automatically fetch article keywords, and
 1. I've added Vue Template Compiler, but I don't think it's actually being used
 1. IBM Watson NLP APIs
 1. ActiveModel Serializers
-1.
+1. Integrating with Image APIs
+  - Splashbase
+  - Unsplash
+  - Wikipedia
+  - Placeholder
